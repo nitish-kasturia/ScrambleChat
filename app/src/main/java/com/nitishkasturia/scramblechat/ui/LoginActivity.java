@@ -1,7 +1,9 @@
-package com.nitishkasturia.scramblechat;
+package com.nitishkasturia.scramblechat.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.nitishkasturia.scramblechat.R;
 
 public class LoginActivity extends AppCompatActivity {
 

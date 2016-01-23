@@ -1,11 +1,11 @@
-package com.nitishkasturia.scramblechat;
+package com.nitishkasturia.scramblechat.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
+import com.nitishkasturia.scramblechat.R;
 
 public class MainActivity extends AppCompatActivity {
 
