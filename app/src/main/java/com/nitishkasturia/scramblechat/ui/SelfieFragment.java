@@ -1,7 +1,5 @@
 package com.nitishkasturia.scramblechat.ui;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,6 +11,8 @@ import com.nitishkasturia.scramblechat.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+
 public class SelfieFragment extends Fragment {
 
 
@@ -31,7 +31,4 @@ public class SelfieFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_selfie, container, false);
     }
-
-    
-
 }

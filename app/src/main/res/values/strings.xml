@@ -4,5 +4,5 @@
     <string name="selfie_fragment_button">Open Camera</string>
     <string name="hello_blank_fragment">Welcome to ScrambleChat!</string>
     <string name="third_fragment_message">TEMPORARY TEXT</string>
-    <string name="fourth_fragment_message">MORE TEMPORARY TEXT</string>
+    <string name="last_fragment_message">MORE TEMPORARY TEXT</string>
 </resources>
