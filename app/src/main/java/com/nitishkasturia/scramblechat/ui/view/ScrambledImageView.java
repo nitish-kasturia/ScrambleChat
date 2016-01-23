@@ -8,12 +8,18 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.nitishkasturia.scramblechat.ScrambleChat;
+
 import java.util.HashMap;
 
 /**
  * Created by Nitish on 2016-01-22.
  */
 public class ScrambledImageView extends View {
+
+    //UNITS ARE DP
+    private final int DIVIDER_SIZE = 1;
+    private final int BORDER_SIZE = 2;
 
     private Context mContext;
     private Bitmap mCroppedImage;
@@ -25,6 +31,8 @@ public class ScrambledImageView extends View {
     private int mGridSize = -1;
     private int mWidth = 0;
     private int mHeight = 0;
+    private int mBorderSizeDp = 0;
+    private int mDividerSizeDp = 0;
 
     public ScrambledImageView(Context context) {
         super(context);
@@ -47,12 +55,14 @@ public class ScrambledImageView extends View {
         mPaint.setFilterBitmap(true);
         mPaint.setDither(true);
         mScrambledImage = new HashMap<>();
+        mBorderSizeDp = ScrambleChat.Utils.dpToPx(BORDER_SIZE, getResources());
+        mDividerSizeDp = ScrambleChat.Utils.dpToPx(DIVIDER_SIZE, getResources());
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mGridSize = (w - 10 - 4) / 3;
+        mGridSize = (w - (mBorderSizeDp * 2) - (mDividerSizeDp * 2)) / 3;
         mWidth = w;
         mHeight = h;
         if (mImage != null) {
@@ -65,7 +75,7 @@ public class ScrambledImageView extends View {
             mImage = image;
             return;
         }
-        this.mImage = Bitmap.createScaledBitmap(image, mWidth - 10, mHeight - 10, false);
+        this.mImage = Bitmap.createScaledBitmap(image, mWidth - (mBorderSizeDp * 2), mHeight - (mBorderSizeDp * 2), false);
         Bitmap croppedImage;
         if (mGridSize != -1) {
             for (int i = 0; i < 3; i++) {
@@ -81,11 +91,15 @@ public class ScrambledImageView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        mPaint.setColor(Color.GRAY);
-        canvas.drawPaint(mPaint);
+
+        mPaint.setColor(Color.BLACK);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mBorderSizeDp);
+        canvas.drawRect(0, 0, mWidth, mHeight, mPaint);
         if (mImage == null) {
             return;
         }
+
         if (mScrambledImage != null) {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
@@ -95,5 +109,12 @@ public class ScrambledImageView extends View {
                 }
             }
         }
+
+        mPaint.setStrokeWidth(mDividerSizeDp);
+
+        canvas.drawLine(mGridSize, 0, mGridSize, mHeight, mPaint);
+        canvas.drawLine((mGridSize * 2) + mDividerSizeDp, 0, (mGridSize * 2) + mDividerSizeDp, mHeight, mPaint);
+        canvas.drawLine(0, mGridSize, mWidth, mGridSize, mPaint);
+        canvas.drawLine(0, (mGridSize * 2) + mDividerSizeDp, mWidth, (mGridSize * 2) + mDividerSizeDp, mPaint);
     }
 }
