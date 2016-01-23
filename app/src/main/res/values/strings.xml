@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">ScrambleChat</string>
-    <string name="selfie_fragment_message">Welcome to ScrambleChat!</string>
+    <string name="selfie_fragment_message">Take a Picture?</string>
+    <string name="selfie_fragment_button">Open Camera</string>
     <string name="hello_blank_fragment">Welcome to ScrambleChat!</string>
+    <string name="third_fragment_message">TEMPORARY TEXT</string>
+    <string name="fourth_fragment_message">MORE TEMPORARY TEXT</string>
 </resources>

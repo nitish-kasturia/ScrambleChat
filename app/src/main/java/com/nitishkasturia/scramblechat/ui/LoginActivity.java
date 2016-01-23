@@ -18,8 +18,8 @@ public class LoginActivity extends AppIntro {
         // AppIntro will automatically generate the dots indicator and buttons.
         addSlide(LandingFragment.newInstance());
         addSlide(SelfieFragment.newInstance());
-        addSlide(third_fragment);
-        addSlide(fourth_fragment);
+        addSlide(ThirdFragment.newInstance());
+        addSlide(FourthFragment.newInstance());
 
         // OPTIONAL METHODS
         // Override bar/separator color.
