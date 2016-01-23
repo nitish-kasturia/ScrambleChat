@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:textColor="#ffffff"
         android:gravity="center"
-        android:text="@string/hello_blank_fragment"
+        android:text="@string/landing_fragment_message"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>
