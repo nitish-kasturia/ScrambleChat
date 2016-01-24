@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.util.TypedValue;
 
 import com.facebook.FacebookSdk;
+import com.parse.Parse;
 
 /**
  * Created by Nitish on 2016-01-22.
@@ -13,7 +14,12 @@ public class ScrambleChat extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this);
+
         FacebookSdk.sdkInitialize(ScrambleChat.this);
+        FacebookSdk.setApplicationId("565400640281287");
     }
 
     public static class Utils {

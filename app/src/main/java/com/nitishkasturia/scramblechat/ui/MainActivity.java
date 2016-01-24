@@ -1,27 +1,30 @@
 package com.nitishkasturia.scramblechat.ui;
 
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.nitishkasturia.scramblechat.R;
-import com.nitishkasturia.scramblechat.ui.view.ScrambledImageView;
 
 public class MainActivity extends AppCompatActivity {
+
+    ViewPager mViewPager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        if (AccessToken.getCurrentAccessToken() == null) {
-//            Intent loginActivityIntent = new Intent(MainActivity.this, LoginActivity.class);
-//            loginActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(loginActivityIntent);
-//        }
-
         setContentView(R.layout.activity_main);
 
-        ScrambledImageView scrambledImageView = (ScrambledImageView) findViewById(R.id.scrambled_image);
-        scrambledImageView.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.grid_test));
+        mViewPager = (ViewPager) findViewById(R.id.main_viewpager);
+
+        if (AccessToken.getCurrentAccessToken() == null) {
+            Toast.makeText(MainActivity.this, "NOT LOGGED IN", Toast.LENGTH_SHORT).show();
+            LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, null);
+        } else {
+            Toast.makeText(MainActivity.this, "ALREADY LOGGED IN", Toast.LENGTH_SHORT).show();
+        }
     }
 }
