@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.nitishkasturia.scramblechat.ScrambleChat;
@@ -18,7 +19,6 @@ import java.util.HashMap;
 public class ScrambledImageView extends View {
 
     //UNITS ARE DP
-    private final int DIVIDER_SIZE = 1;
     private final int BORDER_SIZE = 2;
 
     private Context mContext;
@@ -56,13 +56,18 @@ public class ScrambledImageView extends View {
         mPaint.setDither(true);
         mScrambledImage = new HashMap<>();
         mBorderSizeDp = ScrambleChat.Utils.dpToPx(BORDER_SIZE, getResources());
-        mDividerSizeDp = ScrambleChat.Utils.dpToPx(DIVIDER_SIZE, getResources());
+        mDividerSizeDp = ScrambleChat.Utils.dpToPx(1, getResources());
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mGridSize = (w - (mBorderSizeDp * 2) - (mDividerSizeDp * 2)) / 3;
+        mGridSize = (w - (mBorderSizeDp * 2)) / 3;
         mWidth = w;
         mHeight = h;
         if (mImage != null) {
@@ -75,7 +80,7 @@ public class ScrambledImageView extends View {
             mImage = image;
             return;
         }
-        this.mImage = Bitmap.createScaledBitmap(image, mWidth - (mBorderSizeDp * 2), mHeight - (mBorderSizeDp * 2), false);
+        this.mImage = Bitmap.createScaledBitmap(image, mGridSize * 3, mGridSize * 3, false);
         Bitmap croppedImage;
         if (mGridSize != -1) {
             for (int i = 0; i < 3; i++) {
@@ -89,8 +94,18 @@ public class ScrambledImageView extends View {
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+
+        }
+        return true;
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        mPaint.setColor(Color.GRAY);
+        canvas.drawPaint(mPaint);
 
         mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -104,7 +119,7 @@ public class ScrambledImageView extends View {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (mScrambledImage.get((i * 3) + j) != null) {
-                        canvas.drawBitmap(mScrambledImage.get((i * 3) + j), i * mGridSize, j * mGridSize, mPaint);
+                        canvas.drawBitmap(mScrambledImage.get((i * 3) + j), (i * mGridSize) + mBorderSizeDp, (j * mGridSize) + mBorderSizeDp, mPaint);
                     }
                 }
             }

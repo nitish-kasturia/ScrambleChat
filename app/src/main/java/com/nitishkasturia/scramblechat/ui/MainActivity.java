@@ -22,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ScrambledImageView scrambledImageView = (ScrambledImageView) findViewById(R.id.scrambled_image);
-        scrambledImageView.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.logo));
+        scrambledImageView.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.grid_test));
     }
 }
