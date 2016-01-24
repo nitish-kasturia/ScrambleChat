@@ -1,8 +1,8 @@
 package com.nitishkasturia.scramblechat.ui;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -11,14 +11,14 @@ import com.nitishkasturia.scramblechat.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager mViewPager = null;
+    ListView mReceivedMessagesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mViewPager = (ViewPager) findViewById(R.id.main_viewpager);
+        mReceivedMessagesList = (ListView) findViewById(R.id.received_messages_list);
 
         if (AccessToken.getCurrentAccessToken() == null) {
             Toast.makeText(MainActivity.this, "NOT LOGGED IN", Toast.LENGTH_SHORT).show();
