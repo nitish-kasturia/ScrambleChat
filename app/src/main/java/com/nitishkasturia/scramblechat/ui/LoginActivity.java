@@ -27,13 +27,13 @@ public class LoginActivity extends AppIntro {
         // setSeparatorColor(Color.parseColor("#2196F3"));
 
         // Hide Skip/Done button.
-        showSkipButton(true);
-        setProgressButtonEnabled(true);
+        showSkipButton(false);
+        setProgressButtonEnabled(false);
 
         // Turn vibration on and set intensity.
         // NOTE: you will probably need to ask VIBRATE permission in Manifest.
-//        setVibrate(true);
-//        setVibrateIntensity(30);
+        setVibrate(true);
+        setVibrateIntensity(30);
     }
 
     @Override
