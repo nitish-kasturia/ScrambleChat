@@ -24,6 +24,7 @@ public class ScrambledImageView extends View {
     private Context mContext;
     private Bitmap mCroppedImage;
     private Bitmap mImage;
+    private HashMap<Integer, Bitmap> mScrambledImageSolved;
     private HashMap<Integer, Bitmap> mScrambledImage;
     private Paint mPaint;
 
@@ -86,13 +87,21 @@ public class ScrambledImageView extends View {
             }
             mScrambledImage.put(8, null);
         }
+        mScrambledImageSolved = mScrambledImage;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             int grid = getGrid(event.getX(), event.getY());
+            int nextMove = moveTo(grid);
+            if (nextMove != -1) {
+                Bitmap clickGridBitmap = mScrambledImage.get(grid);
+                mScrambledImage.put(grid, null);
+                mScrambledImage.put(nextMove, clickGridBitmap);
+            }
         }
+        invalidate();
         return true;
     }
 
@@ -153,6 +162,78 @@ public class ScrambledImageView extends View {
             } else if (y > (mBorderSizeDp + (mGridSize * 2)) && y < (mBorderSizeDp + (mGridSize * 3))) {
                 return 8;
             }
+        }
+        return -1;
+    }
+
+    private int moveTo(int clickedGrid) {
+        switch (clickedGrid) {
+            case 0:
+                if (mScrambledImage.get(1) == null) {
+                    return 1;
+                } else if (mScrambledImage.get(3) == null) {
+                    return 3;
+                }
+            case 1:
+                if (mScrambledImage.get(0) == null) {
+                    return 0;
+                } else if (mScrambledImage.get(2) == null) {
+                    return 2;
+                } else if (mScrambledImage.get(4) == null) {
+                    return 4;
+                }
+            case 2:
+                if (mScrambledImage.get(1) == null) {
+                    return 1;
+                } else if (mScrambledImage.get(5) == null) {
+                    return 5;
+                }
+            case 3:
+                if (mScrambledImage.get(0) == null) {
+                    return 0;
+                } else if (mScrambledImage.get(4) == null) {
+                    return 4;
+                } else if (mScrambledImage.get(6) == null) {
+                    return 6;
+                }
+            case 4:
+                if (mScrambledImage.get(1) == null) {
+                    return 1;
+                } else if (mScrambledImage.get(3) == null) {
+                    return 3;
+                } else if (mScrambledImage.get(5) == null) {
+                    return 5;
+                } else if (mScrambledImage.get(7) == null) {
+                    return 7;
+                }
+            case 5:
+                if (mScrambledImage.get(2) == null) {
+                    return 2;
+                } else if (mScrambledImage.get(4) == null) {
+                    return 4;
+                } else if (mScrambledImage.get(8) == null) {
+                    return 8;
+                }
+            case 6:
+                if (mScrambledImage.get(3) == null) {
+                    return 3;
+                } else if (mScrambledImage.get(7) == null) {
+                    return 7;
+                }
+            case 7:
+                if (mScrambledImage.get(4) == null) {
+                    return 4;
+                } else if (mScrambledImage.get(6) == null) {
+                    return 6;
+                } else if (mScrambledImage.get(8) == null) {
+                    return 8;
+                }
+            case 8:
+                if (mScrambledImage.get(5) == null) {
+                    return 5;
+                } else if (mScrambledImage.get(7) == null) {
+                    return 7;
+                }
         }
         return -1;
     }
