@@ -1,21 +1,14 @@
 package com.nitishkasturia.scramblechat.ui;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.paolorotolo.appintro.AppIntro;
-import com.github.paolorotolo.appintro.AppIntroFragment;
-import com.nitishkasturia.scramblechat.R;
 
 public class LoginActivity extends AppIntro {
 
-    // Please DO NOT override onCreate. Use init.
     @Override
     public void init(Bundle savedInstanceState) {
 
-        // Add your slide's fragments here.
-        // AppIntro will automatically generate the dots indicator and buttons.
         addSlide(LandingFragment.newInstance());
         addSlide(SelfieFragment.newInstance());
         addSlide(ScrambleFragment.newInstance());
