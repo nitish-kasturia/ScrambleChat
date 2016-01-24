@@ -19,7 +19,7 @@ import java.util.HashMap;
 public class ScrambledImageView extends View {
 
     //UNITS ARE DP
-    private final int BORDER_SIZE = 2;
+    private final int BORDER_SIZE = 3;
 
     private Context mContext;
     private Bitmap mCroppedImage;
@@ -56,7 +56,7 @@ public class ScrambledImageView extends View {
         mPaint.setDither(true);
         mScrambledImage = new HashMap<>();
         mBorderSizeDp = ScrambleChat.Utils.dpToPx(BORDER_SIZE, getResources());
-        mDividerSizeDp = ScrambleChat.Utils.dpToPx(1, getResources());
+        mDividerSizeDp = ScrambleChat.Utils.dpToPx(2, getResources());
     }
 
     @Override
