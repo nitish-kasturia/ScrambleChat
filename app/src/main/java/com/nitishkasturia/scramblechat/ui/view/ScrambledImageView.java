@@ -60,11 +60,6 @@ public class ScrambledImageView extends View {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mGridSize = (w - (mBorderSizeDp * 2)) / 3;
@@ -96,7 +91,7 @@ public class ScrambledImageView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
-
+            int grid = getGrid(event.getX(), event.getY());
         }
         return true;
     }
@@ -131,5 +126,34 @@ public class ScrambledImageView extends View {
         canvas.drawLine((mGridSize * 2) + mDividerSizeDp, 0, (mGridSize * 2) + mDividerSizeDp, mHeight, mPaint);
         canvas.drawLine(0, mGridSize, mWidth, mGridSize, mPaint);
         canvas.drawLine(0, (mGridSize * 2) + mDividerSizeDp, mWidth, (mGridSize * 2) + mDividerSizeDp, mPaint);
+    }
+
+    private int getGrid(float x, float y) {
+        if (x > mBorderSizeDp && x < (mBorderSizeDp + mGridSize)) {
+            if (y > mBorderSizeDp && y < (mBorderSizeDp + mGridSize)) {
+                return 0;
+            } else if (y > (mBorderSizeDp + mGridSize) && y < (mBorderSizeDp + (mGridSize * 2))) {
+                return 3;
+            } else if (y > (mBorderSizeDp + (mGridSize * 2)) && y < (mBorderSizeDp + (mGridSize * 3))) {
+                return 6;
+            }
+        } else if (x > (mBorderSizeDp + mGridSize) && x < (mBorderSizeDp + (mGridSize * 2))) {
+            if (y > mBorderSizeDp && y < (mBorderSizeDp + mGridSize)) {
+                return 1;
+            } else if (y > (mBorderSizeDp + mGridSize) && y < (mBorderSizeDp + (mGridSize * 2))) {
+                return 4;
+            } else if (y > (mBorderSizeDp + (mGridSize * 2)) && y < (mBorderSizeDp + (mGridSize * 3))) {
+                return 7;
+            }
+        } else if (x > (mBorderSizeDp + (mGridSize * 2)) && x < (mBorderSizeDp + (mGridSize * 3))) {
+            if (y > mBorderSizeDp && y < (mBorderSizeDp + mGridSize)) {
+                return 2;
+            } else if (y > (mBorderSizeDp + mGridSize) && y < (mBorderSizeDp + (mGridSize * 2))) {
+                return 5;
+            } else if (y > (mBorderSizeDp + (mGridSize * 2)) && y < (mBorderSizeDp + (mGridSize * 3))) {
+                return 8;
+            }
+        }
+        return -1;
     }
 }
