@@ -32,7 +32,6 @@ public class SelfieFragment extends Fragment {
         return new SelfieFragment();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
