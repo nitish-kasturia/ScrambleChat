@@ -5,13 +5,12 @@
     android:background="#2196F3"
     tools:context="com.nitishkasturia.scramblechat.ui.LandingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="#ffffff"
         android:gravity="center"
         android:text="@string/landing_fragment_message"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textColor="#ffffff"
+        android:textSize="36sp" />
 
 </FrameLayout>

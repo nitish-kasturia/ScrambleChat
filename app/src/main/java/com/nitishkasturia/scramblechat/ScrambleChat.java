@@ -6,6 +6,7 @@ import android.util.TypedValue;
 
 import com.facebook.FacebookSdk;
 import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
 
 /**
  * Created by Nitish on 2016-01-22.
@@ -20,6 +21,7 @@ public class ScrambleChat extends Application {
 
         FacebookSdk.sdkInitialize(ScrambleChat.this);
         FacebookSdk.setApplicationId("565400640281287");
+        ParseFacebookUtils.initialize(this);
     }
 
     public static class Utils {
