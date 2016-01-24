@@ -1,9 +1,14 @@
 package com.nitishkasturia.scramblechat.ui;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;

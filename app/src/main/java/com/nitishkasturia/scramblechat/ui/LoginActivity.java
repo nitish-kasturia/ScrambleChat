@@ -1,12 +1,16 @@
 package com.nitishkasturia.scramblechat.ui;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.nitishkasturia.scramblechat.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppIntro {
 
+    // Please DO NOT override onCreate. Use init.
     @Override
     public void init(Bundle savedInstanceState) {
 
@@ -31,4 +35,25 @@ public class LoginActivity extends AppCompatActivity {
         setVibrate(true);
         setVibrateIntensity(30);
     }
+
+    @Override
+    public void onSkipPressed() {
+        // Do something when users tap on Skip button.
+    }
+
+    @Override
+    public void onDonePressed() {
+        // Do something when users tap on Done button.
+    }
+
+    @Override
+    public void onSlideChanged() {
+        // Do something when the slide changes.
+    }
+
+    @Override
+    public void onNextPressed() {
+        // Do something when users tap on Next button.
+    }
+
 }
